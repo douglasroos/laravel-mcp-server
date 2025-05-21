@@ -68,6 +68,19 @@ final class MCPProtocol
         $this->disconnect();
     }
 
+    /**
+     * Set the client ID for the transport.
+     *
+     * @param  string  $clientId  The client ID to set
+     * @return void
+     */
+    public function setClientId(string $clientId): void
+    {
+        if (property_exists($this, 'transport') && method_exists($this->transport, 'setClientId')) {
+            $this->transport->setClientId($clientId);
+        }
+    }
+
     public function send(string|array $message): void
     {
         $this->transport->send(message: $message);

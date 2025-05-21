@@ -80,9 +80,7 @@ final class MCPServer
      */
     public function setClientId(string $clientId): void
     {
-        if (property_exists($this, 'protocol') && property_exists($this->protocol, 'transport')) {
-            $this->protocol->transport->setClientId($clientId);
-        }
+        $this->protocol->setClientId($clientId);
     }
 
     /**
