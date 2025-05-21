@@ -74,6 +74,17 @@ final class SseTransport implements TransportInterface
     }
 
     /**
+     * Sets the client ID for the transport layer.
+     * This ID is used to identify the client connection.
+     *
+     * @param  string  $clientId  The unique client ID.
+     */
+    public function setClientId(string $clientId): void
+    {
+        $this->clientId = $clientId;
+    }
+
+    /**
      * Initializes the transport: generates client ID and sends the initial 'endpoint' event.
      * Adapter-specific initialization might occur here or externally.
      *

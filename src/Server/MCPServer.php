@@ -69,10 +69,20 @@ final class MCPServer
     {
         $this->protocol = $protocol;
         $this->serverInfo = $serverInfo;
-        $this->capabilities = $capabilities ?? new ServerCapabilities;
+        $this->capabilities = $capabilities ?? new ServerCapabilities();
 
         // Register the handler for the mandatory 'initialize' method.
         $this->registerRequestHandler(new InitializeHandler($this));
+    }
+
+    /**
+     * Sets the client ID for the transport layer.
+     */
+    public function setClientId(string $clientId): void
+    {
+        if (property_exists($this, 'protocol') && property_exists($this->protocol, 'transport')) {
+            $this->protocol->transport->setClientId($clientId);
+        }
     }
 
     /**

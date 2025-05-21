@@ -12,6 +12,11 @@ class SseController extends Controller
     public function handle(Request $request)
     {
         $server = app(MCPServer::class);
+        
+        $sessionId = $request->query('sessionId');
+        if ($sessionId) {
+            $server->setClientId($sessionId);
+        }
 
         return new StreamedResponse(fn () => $server->connect(), headers: [
             'Content-Type' => 'text/event-stream',
