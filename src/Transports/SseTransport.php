@@ -171,13 +171,13 @@ final class SseTransport implements TransportInterface
             }
         }
 
-        if ($this->adapter !== null && $this->clientId !== null) {
+        /*if ($this->adapter !== null && $this->clientId !== null) {
             try {
                 $this->adapter->removeAllMessages($this->clientId);
             } catch (Exception $e) {
                 Log::error('Error cleaning up SSE adapter resources on close: '.$e->getMessage());
             }
-        }
+        }*/
 
         try {
             $this->sendEvent(event: 'close', data: '{"reason":"server_closed"}');
